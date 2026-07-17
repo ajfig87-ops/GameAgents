@@ -1,23 +1,17 @@
-from pynput.keyboard import Key, Controller as KeyboardController
-from pynput.mouse import Button, Controller as MouseController
+import subprocess
 import time
 
 class InputControl:
-    def __init__(self):
-        self.keyboard = KeyboardController()
-        self.mouse = MouseController()
-    
     def move_mouse(self, dx, dy):
-        self.mouse.move(dx, dy)
+        subprocess.run(["xdotool", "mousemove_relative", str(dx), str(dy)])
     
-    def click(self, button=Button.left):
-        self.mouse.click(button)
+    def click(self, button="left"):
+        subprocess.run(["xdotool", "click", "1" if button == "left" else "3"])
     
     def press_key(self, key):
-        self.keyboard.press(key)
-        self.keyboard.release(key)
+        subprocess.run(["xdotool", "key", key])
     
     def hold_key(self, key, duration=0.1):
-        self.keyboard.press(key)
+        subprocess.run(["xdotool", "keydown", key])
         time.sleep(duration)
-        self.keyboard.release(key)
+        subprocess.run(["xdotool", "keyup", key])
