@@ -1,5 +1,5 @@
 # GameAgents
 
-Local Ollama agents for playing games (starting with Call of Duty: Nazi Zombies).
+Local Ollama agents for playing games (starting with CS:GO).
 
 Git = Single Source of Truth.
